@@ -8,24 +8,24 @@ const questions = [
         message: 'que desea hacer?',
         choices: [
             {
-                name: 'crear contacto',  // name: 'crear contacto'
+                name: `${'1.'.red}crear contacto`,
                 value: '1'
             },
             {
-                name: 'listar contactos',  // name: 'listar contactos',
+                name: `${'2.'.red}listar contactos`, 
                 value: '2'
             },
             {
-                name: 'actualizar contacto', // name: 'actualizar contacto',
+                name: `${'3.'.red}actualizar contacto`, 
                 value: '3'
             },
             {
-                name: 'eliminar contacto', // name: 'eliminar contacto',
+                name: `${'4.'.red}eliminar contacto`,
                 value: '4'
             },
 
             {
-                name: 'salir',
+                name: `${'5.'.red}salir`,
                 value: '5'
             }
         ]
@@ -53,5 +53,23 @@ const pausa = async () => {
     await inquire.prompt(questions)
 }
 
+const leerInput = async (message) => {
+    let questions = [
+        {   
+            type: 'input',
+            name: 'desc',
+            message,
+            validate(value) {
+                if (value.length === 0 ) {
+                    return 'ingrese un valor ';
+                } 
+                return true;
+            }
+        }
+    ];
+    const {desc} = await inquire.prompt(questions)
+    return desc;
+}
 
-module.exports = {  inquireMenu, pausa };
+
+module.exports = {  inquireMenu, pausa, leerInput };
