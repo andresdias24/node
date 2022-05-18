@@ -2,12 +2,19 @@ require('color')
 
 const{inquireMenu, pausa, leerInput } = require('./helpers/inquirer');
 const Contactos = require('././models/Contactos');
-const { saveDB } = require('././helpers/saveFile');
+const { saveDB, leerDB  } = require('././helpers/saveFile');
 
 const main = async () => {   
     console.log('Hello World!');
     let opt = ''
     const contactos = new Contactos();
+
+    const contactosDB = await leerDB();
+
+    if (contactosDB) {
+        // establecer el listado de contactos
+        contactos.getContacto(contactosDB);
+    }
 
     do {
         // imprimir el menu 

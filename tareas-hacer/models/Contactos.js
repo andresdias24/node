@@ -21,6 +21,11 @@ class Contactos {
         this._listado = {};
     }
 
+    getContacto(contactos = []) {
+        return this._listado[contactos.id] = contactos;
+    }
+    
+
     crearContacto(nombre = '') {
         const contacto = new Contacto(nombre);
         this._listado[contacto.id] = contacto;
