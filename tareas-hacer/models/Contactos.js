@@ -21,6 +21,13 @@ class Contactos {
         this._listado = {};
     }
 
+    borrarContacto(id = '') {
+        if (this._listado[id]) {
+        delete this._listado[id];
+        }
+    }
+
+
     getContacto(contactos = []) {
         return this._listado[contactos.id] = contactos;
     }

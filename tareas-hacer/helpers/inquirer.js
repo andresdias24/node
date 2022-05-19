@@ -71,5 +71,23 @@ const leerInput = async (message) => {
     return desc;
 }
 
+const listaContactosBorrar = async (contactos = []) => {
+    const choices = contactos.map( (contacto, index) => {
+        return {
+            name: `${index+1}. ${contacto.nombre}`,
+            value: contacto.id
+        }
+    });
+    const questions = [
+        {
+            type: 'list',
+            name: 'id',
+            message: 'seleccione el contacto a borrar',
+            choices
+        }
+    ];
+    const {id} = await inquire.prompt(questions)
+    return id;
+}
 
-module.exports = {  inquireMenu, pausa, leerInput };
+module.exports = {  inquireMenu, pausa, leerInput, listaContactosBorrar };

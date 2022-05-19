@@ -1,6 +1,6 @@
 require('color')
 
-const{inquireMenu, pausa, leerInput } = require('./helpers/inquirer');
+const{inquireMenu, pausa, leerInput, listaContactosBorrar } = require('./helpers/inquirer');
 const Contactos = require('././models/Contactos');
 const { saveDB, leerDB  } = require('././helpers/saveFile');
 
@@ -26,6 +26,9 @@ const main = async () => {
                 break;
             case '2':
                 console.log(contactos._listado,'Listar contactos');
+                break
+            case '4':
+                const id =  await listaContactosBorrar(contactos.listadoArr);
                 break
             default:
                 break;
